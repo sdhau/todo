@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>My Task page</h1>
+    Welcome {{ current_user.username }}
+    {% if user.last_seen %}
+        <p>Last seen on: {{ user.last_seen }}</p>
+    {% endif %}
+
+    <form action="" method="POST"  novalidate>
+        {{ form_add_task.hidden_tag() }}
+
+        <div class="form-group col-sm-6">
+            <p>
+                {{ form_add_task.task_name.label}}
+                {{ form_add_task.task_name(size=32, class="form-control") }}
+                {% for error in form_add_task.task_name.errors %}
+                    {{ error }}
+                {% endfor %}
+            </p>
+            <p>
+                {{ form_add_task.submit(class="btn btn-primary") }}
+            </p>
+        </div>
+    </form>
+
+    <form action="" method="POST"  novalidate>
+        {{ form_update_task.hidden_tag() }}
+        <div class="form-group col-sm-6">
+            {% if not task_list %}
+                <h3>no task</h3>
+            {% else %}
+                {% for task in task_list %}
+                    <li>{{ form_update_task.task_status }}{{ task.task_name }}</li>
+                {% endfor %}
+            {% endif %}
+            <p>
+                {{ form_update_task.submit(class="btn btn-primary") }}
+            </p>
+        </div>
+    </form>
+
+{% endblock content %}

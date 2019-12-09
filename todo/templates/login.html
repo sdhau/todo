@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Login Page</h1>
+    <form method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group col-sm-6">
+            <p>
+                {{ form.username.label}}
+                {{ form.username(size=32, class="form-control") }}
+                {% for error in form.username.errors %}
+                    {{ error }}
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password.label }}
+                {{ form.password(size=32, class="form-control form-control-sm") }}
+                {% for error in form.password.errors %}
+                    {{ error }}
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.remember_me }}
+                {{ form.remember_me.label }}
+            </p>
+            <p>
+                {{ form.submit(class="btn btn-primary mb-2") }}
+            </p>
+        </div>
+    </form>
+{% endblock content %}

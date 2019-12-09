@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Edit Profile</h1>
+    <form action="" method="Post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group col-sm-6">
+            <p>
+                {{ form.username.label}}
+                {{ form.username(size=32, class="form-control") }}
+                {% for error in form.username.errors %}
+                    {{ error }}
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.email.label}}
+                {{ form.email(size=64, class="form-control") }}
+                {% for error in form.username.errors %}
+                    {{ error }}
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.submit(class="btn btn-primary mb-2") }}
+            </p>
+        </div>
+    </form>
+{% endblock content %}
